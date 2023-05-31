@@ -122,12 +122,13 @@ console.log(characters)
 let femaleCharacters = []
 for (let i = 0; i < starWarsCharacters.length; i++) {
   if (starWarsCharacters[i].gender === "female") {
-    ;(femaleCharacters = {
-      name: starWarsCharacters[i].name,
-      hair_color: starWarsCharacters[i].hair_color,
-      eye_color: starWarsCharacters[i].eye_color,
-    }),
-      console.log(femaleCharacters)
+    let copy = Object.assign({}, starWarsCharacters[i])
+    delete copy.birth_year
+    delete copy.gender
+    delete copy.mass
+    delete copy.height
+    delete copy.skin_color
+    femaleCharacters.push(starWarsCharacters)
   }
 }
 
@@ -158,8 +159,6 @@ for (let i = 0; i < starWarsCharacters.length; i++) {
     case "blue-gray":
       eyeColor["blue-gray"].push(starWarsCharacters[i])
       break
-    default:
-      break
   }
 }
 console.log(eyeColor)
@@ -168,7 +167,7 @@ console.log(eyeColor)
 */
 let i = 0
 let massteam = 0
-while (i < 10) {
+while (i < starWarsCharacters.length) {
   massteam = massteam + Number(starWarsCharacters[i].mass)
   i += 1
 }
@@ -192,20 +191,26 @@ switch (massteam) {
   case massteam < 500 && massteam:
     console.log("Ship is under loaded")
     break
-  case (massteam = 500) && massteam:
+  case massteam === 500 && massteam:
     console.log("Ship is half loaded")
     break
-  case massteam < 9000 && massteam:
+  case massteam > 700 && massteam <= 900 && massteam:
     console.log("Warning: Load is over 700")
     break
+  case massteam > 900 && massteam < 1000 && massteam:
+    console.log("Critical Load: Over 900")
+    break
+  case massteam > 1000 && massteam:
+    console.log("DANGER! OVERLOAD ALERT: escape from ship now!")
+    break
 }
+
 /* ESERCIZIO 8
   Usa un for loop per cambiare il valore della proprietà "gender" di alcuni personaggi dal valore "n/a" a "robot" (Tip: puoi effettuare la riassegnazione del valore corrispondente o creare un nuovo array)
 */
 let starWarsCharactersgender
 for (let i = 0; i < starWarsCharacters.length; i++) {
   if (starWarsCharacters[i].gender === "n/a") {
-    delete starWarsCharacters.gender
     starWarsCharacters[i].gender = "robot"
   }
 }
